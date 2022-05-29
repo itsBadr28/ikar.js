@@ -1,6 +1,20 @@
 import { createApp } from 'vue';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fas, faBars } from '@fortawesome/free-solid-svg-icons';
+import { fab } from '@fortawesome/free-brands-svg-icons';
 import App from './App.vue';
 import router from './router';
 import store from './store';
+import VeeValidatePlugin from './includes/validtions';
+import './assets/tailwind.css';
+import ScrollAnimation from './directives/scrollanimation';
 
-createApp(App).use(store).use(router).mount('#app');
+library.add(fas, fab, faBars);
+const app = createApp(App);
+app.directive('scrollanimation', ScrollAnimation);
+app.component('font-awesome-icon', FontAwesomeIcon);
+app.use(store);
+app.use(router);
+app.use(VeeValidatePlugin);
+app.mount('#app');
