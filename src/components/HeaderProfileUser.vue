@@ -16,10 +16,10 @@
     >
       <div class="flex">
         <router-link class="flex" to="/">
-          <img class="w-16 h-16" src="../assets/img/logoDark.png" alt="" />
+          <img class="w-16 h-16" src="../assets/img/logo.png" alt="" />
           <h1
             class="
-              text-white
+              text-[#141517]
               mr-8
               uppercase
               tracking-wide
@@ -57,64 +57,48 @@
         id="nav"
       >
         <ul class="lg:inline-flex my-auto lg:flex-row lg:ml-auto flex flex-col">
-          <router-link to="/">
-            <li
-              @mouseover="hoverHome = false"
-              @mouseleave="hoverHome = true"
-              class="lg:w-auto px-3 py-2 rounded"
-            >
-              <a class="text-white text-xl" href="#home">
-                <span class="mb-2"> Home </span>
-              </a>
-              <div
-                v-show="!hoverHome"
-                class="w-[53px] rounded-full absolute bg-white h-1"
-              ></div>
-            </li>
-          </router-link>
-          <router-link to="/Reservation">
-            <li
-              @mouseover="hoverRent = false"
-              @mouseleave="hoverRent = true"
-              class="lg:w-auto px-3 py-2 rounded"
-            >
-              <a class="text-white text-xl" href="#rent">
-                <span> Rent </span>
-              </a>
-              <div
-                v-show="!hoverRent"
-                class="w-[44px] rounded-full absolute bg-white h-1"
-              ></div>
-            </li>
-          </router-link>
+          <li
+            @mouseover="hoverStart = false"
+            @mouseleave="hoverStart = true"
+            class="lg:w-auto px-3 py-2 rounded"
+          >
+            <a class="text-[#141517] text-xl">
+              <router-link to="/reservation">
+                <span class="text-[#141517]"> Start a Reservation </span>
+              </router-link>
+            </a>
+            <div
+              v-show="!hoverStart"
+              class="w-[170px] rounded-full absolute bg-[#141517] h-1"
+            ></div>
+          </li>
           <li
             @mouseover="hoverCars = false"
             @mouseleave="hoverCars = true"
             class="lg:w-auto px-3 py-2 rounded"
           >
-            <a class="text-white text-xl" href="#cars">
+            <a class="text-[#141517] text-xl" href="#cars">
               <span> Cars </span>
             </a>
             <div
               v-show="!hoverCars"
-              class="w-[42px] rounded-full absolute bg-white h-1"
+              class="w-[42px] rounded-full absolute bg-[#141517] h-1"
             ></div>
           </li>
           <li
-            @mouseover="hoverAbout = false"
-            @mouseleave="hoverAbout = true"
+            @mouseover="hoverLaws = false"
+            @mouseleave="hoverLaws = true"
             class="lg:w-auto px-3 py-2 rounded"
           >
-            <a class="text-white text-xl" href="#about">
-              <span> About Us </span>
+            <a class="text-[#141517] text-xl" href="#cars">
+              <router-link to="">
+                <span class="text-[#141517]"> Laws </span>
+              </router-link>
             </a>
-            <div
-              v-show="!hoverAbout"
-              class="w-[82px] rounded-full absolute bg-white h-1"
-            ></div>
+            <div v-show="!hoverLaws" class="w-[50px] rounded-full absolute bg-[#141517] h-1"></div>
           </li>
         </ul>
-        <ul :class="isSignIn ? 'lg:hidden hidden' : ''"
+        <!-- <ul :class="isSignIn ? 'lg:hidden hidden' : ''"
           @click="toggleIssignIn"
           class="lg:inline-flex my-auto lg:flex-row lg:ml-auto items-center"
         >
@@ -126,43 +110,27 @@
               Sign up | sign in</span
             >
           </button>
-        </ul>
+        </ul> -->
         <div :class="isSignIn ? '' : 'lg:hidden'" class="flex lg:ml-auto">
           <div class="flex bbg-red-500">
             <div class="ml-2 my-auto  w-10 h-10 hover:bg-gray-600 rounded-full flex justify-center relative ">
-              <font-awesome-icon class="text-white my-auto items-center text-xl" icon="bell" />
+              <font-awesome-icon class="text-[#141517] my-auto items-center text-xl" icon="bell" />
               <span class=" absolute right-[10px] w-1.5 h-1.5 bg-red-600 rounded-full top-[10px]"></span>
             </div>
-            <!-- <div
-              class="
-                my-auto
-                m-0.5
-                w-8
-                h-8
-                hover:bg-gray-600
-                rounded-full
-                relative
-              "
-            >
-              <font-awesome-icon
-                class="text-white p-1.5 text-xl"
-                icon="arrow-right-from-bracket"
-              />
-            </div> -->
             <div class="flex my-auto mr-4">
               <div class="relative inline-block text-left">
                 <button @click="toggledropDownOpen" class="mr-2 relative flex justify-center items-center group text-[#141517] rounded focus:text-white">
              <div class=" my-auto  w-10 h-10 hover:bg-gray-600 rounded-full flex justify-center relative ">
-              <font-awesome-icon class="text-white my-auto items-center p-2 text-xl" icon="gear" />
+              <font-awesome-icon class="text-[#141517] my-auto items-center p-2 text-xl" icon="gear" />
             </div>
           </button>
             <div :class=" dropDownOpen ? '':'hidden'" class="absolute top-full  group-focus:block min-w-full w-max bg-white mt-1 rounded">
               <div class=" origin-top-right absolute right-0 -top-1 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-                  <div @click="toggledropDownOpen" class="py-1">
+                  <div class="py-1">
                     <router-link to="/profileUser">
-                    <a  class="hover:bg-slate-200 text-[#141517] block px-4 text-left py-2 text-md">Profile</a>
+                    <a class="hover:bg-slate-200 text-[#141517] block px-4 text-left py-2 text-md">Profile</a>
                     </router-link>
-                      <div  
+                      <div 
                         @click="toggleIssignIn"
                       >
                       <button
@@ -217,7 +185,10 @@
         </div>
       </div>
     </nav>
-  </div>
+</div>
+    <div class="bg-[#141517] h-[170px]">
+
+    </div>
 </template>
 
 <script>
@@ -228,11 +199,9 @@ export default {
   data() {
     return {
 
-      hoverHome: "false",
-      hoverRent: "false",
+      hoverStart: "false",
       hoverCars: "false",
-      hoverContact: "false",
-      hoverAbout: "false",
+      hoverLaws: "false",
       userName: "badr ad",
     };
   },

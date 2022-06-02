@@ -27,7 +27,7 @@ export default {
     $route: {
       immediate: true,
       handler(to, from) {
-        document.title = 'IKAR | Profile Reservation';
+        document.title = 'IKAR | Reservation';
       },
     },
   },

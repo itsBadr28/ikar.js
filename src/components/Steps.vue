@@ -1,6 +1,25 @@
 <template>
  <!-- eslint-disable  -->
- <div class="bg-[#141517]">
+ <div  class="bg-[#141517]">
+   <div>
+     <form  action="">
+     <Datepicker name="date" noToday v-model="datePickUP" :enableTimePicker="false" range multiCalendars  placeholder="Select Date"  dark required  :yearRange="[2022, 2023]" :disabledWeekDays="[6, 5]"  >
+       <template #calendar-header="{ index, day }">
+        <div :class="index === 4 || index === 5 ? 'text-red-500' : ''">
+          {{ day }}
+        </div>
+      </template>
+    </Datepicker> 
+<button @click="dddd"  type="button">click</button>
+     </form>
+     <!-- <Datepicker  v-model="dateReturn" noToday :enableTimePicker="false"  placeholder="Select Date"  required  :yearRange="[2022, 2023]" :disabledWeekDays="[6, 5]" minutesIncrement="30"   dark >
+      <template #calendar-header="{ index, day }">
+        <div :class="index === 4 || index === 5 ? 'text-red-500' : ''">
+          {{ day }}
+        </div>
+      </template>
+    </Datepicker> -->
+   </div>
 <div class="  bg-[#141517] max-w-7xl mx-auto py-16 wrapper-stepper">
         <div class="bg-[#141517] stepper lg:w-full w-[95%] mx-auto max-w-7xl">
             <div class="stepper-progress">
@@ -47,7 +66,7 @@
         </div>
         <div class="stepper-content" v-for="item in 5" :key="item">
             <div class="stepper-pane" v-if="step == item">
-             <div v-show="item == 2" >
+             <div v-show="item == 1" >
               <vee-form @submit="register" :validation-schema="schema">
                <div class=" flex-initial justify-center pb-8 mx-auto max-w-7xl">
                 <div class=" lg:w-full w-[95%] flex-initial text-left  mx-auto ">
@@ -94,14 +113,11 @@
                      <span class="inline-flex items-center px-3.5 text-2xl text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
                        <font-awesome-icon icon="calendar-days" />
                      </span>
-                     <vee-field type="date" name="pickUp" class=" rounded-r-sm w-[200px] bg-gray-50 border outline-none text-gray-900
-                     focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0  text-xl font-body
-                    border-gray-300 p-4  dark:bg-[#222327] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
-                    dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="12-12-22" />
+                    <Datepicker hideInputIcon closeOnScroll class="" v-model="dateReturn"  :minDate="new Date()" :enableTimePicker="false" placeholder="SELECT DATE"  required  :yearRange="[2022, 2023]" :disabledWeekDays="[6, 5]"  dark />
+
                   </div>
-                  <ErrorMessage class="text-red-600" name="pickUp" />
                 </div>
-                <div class="">
+                <!-- <div class="">
                    <label for="website-admin" class="block mb-2 text-2xl text-gray-900 font-body font-bold dark:text-gray-300">TIME <span class="font-body font-bold text-red-500 text-xl">*</span></label>
                    <div class="flex">
                     <span class="inline-flex items-center px-3.5 text-2xl text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md lg:rounded-l-sm dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
@@ -113,7 +129,7 @@
                     dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="12-12-22" />
                   </div>
                   <ErrorMessage class="text-red-600" name="pickUpTime" />
-                </div>
+                </div> -->
                </div>
                <div class="lg:flex ">
                   <div class=" mr-0.5">
@@ -122,14 +138,10 @@
                     <span class="inline-flex items-center px-3.5 text-2xl text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
                       <font-awesome-icon icon="calendar-days" />
                     </span>
-                    <vee-field name="return" type="date"  class=" rounded-r-sm w-[200px] bg-gray-50 border outline-none text-gray-900
-                      focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 text-xl font-body
-                      border-gray-300 p-4  dark:bg-[#222327] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
-                     dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="12-12-22" />
+                    <Datepicker hideInputIcon closeOnScroll class="" v-model="dateReturn"  :minDate="new Date()" :enableTimePicker="false" placeholder="SELECT DATE"  required  :yearRange="[2022, 2023]" :disabledWeekDays="[6, 5]"  dark />
                   </div>
-                  <ErrorMessage class="text-red-600" name="return" />
                 </div>
-                <div class=" ">
+                <!-- <div class=" ">
                      <label for="website-admin" class="block mb-2 text-2xl text-gray-900 font-body font-bold dark:text-gray-300">TIME <span class="font-body font-bold text-red-500 text-xl">*</span></label>
                     <div class="flex">
                      <span class="inline-flex items-center px-3.5 text-2xl text-gray-900 bg-gray-200 border rounded-l-md border-r-0 border-gray-300 lg:rounded-l-sm dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
@@ -141,7 +153,7 @@
                      dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="12-12-22" />
                     </div>
                     <ErrorMessage class="text-red-600" name="returnTime" />
-                 </div>
+                 </div> -->
                </div>
                <div class=" ">
                  <div class="lg:flex">
@@ -181,9 +193,9 @@
                 <div v-if="item === 1" id="map" class="h-full z-[1]"></div> 
              </div> 
              </div> 
-              <div v-show="item == 1 " class="mt-4 flex">
-         <div>
-          <div class="lg:w-[400px] w-[95%] text-left lg:h-full mx-auto rounded-sm font-bold bg-white">
+              <div v-show="item == 2 " class="mt-4 flex">
+              <div>
+                <div v-scrollanimation class="duration-700 -translate-x-24 lg:w-[400px] w-[95%] text-left lg:h-[1200px] lg:block hidden mx-auto rounded-sm font-bold bg-white">
           <div class=" py-4  border-b flex font-body justify-between  text-[#141517] border-[#141517]">
            <div class="flex">
             <h1 class=" ml-4 mr-1 text-4xl">Filter</h1>
@@ -253,20 +265,29 @@
                 <label class="inline-flex items-center">
                 <input type="checkbox" class="w-10 text-green-600 h-10" />
                 <span class=" font-body text-lg  ml-2">Diesel</span>
-                </label></div>
+                </label>
+                </div>
               <div class="my-auto">257$</div>
              </div>
-              <div class=" flex justify-between pl-4 w-[85%] mt-2">
+             <div class=" flex justify-between pl-4 w-[85%] mt-2">
                 <div>
                 <label class="inline-flex items-center">
                 <input type="checkbox" class="w-10 text-green-600 h-10" />
                 <span class=" font-body text-lg  ml-2">Petrol</span>
-                </label></div>
+                </label>
+                </div>
+              <div class="my-auto">257$</div>
+             </div>
+             <div class=" flex justify-between pl-4 w-[85%] mt-2">
                 <div>
                 <label class="inline-flex items-center">
                 <input type="checkbox" class="w-10 text-green-600 h-10" />
                 <span class=" font-body text-lg  ml-2">Electric</span>
-                </label></div>
+                </label>
+                </div>
+              <div class="my-auto">257$</div>
+             </div>
+              <div class=" flex justify-between pl-4 w-[85%] mt-2">
                 <div>
                 <label class="inline-flex items-center">
                 <input type="checkbox" class="w-10 text-green-600 h-10" />
@@ -299,10 +320,10 @@
               </div>
               
           </div>
-      </div>
-      </div>
+                </div>
+               </div>
          <div class="mb-36 mx-auto">
-           <div class=" py-4  lg:border-t border-b  w-full lg:w-[850px]  justify-between border-white flex">
+           <div v-scrollanimation class=" duration-700 -translate-y-24 py-4  lg:border-t border-b  w-[90%] lg:w-[850px] ml-8  justify-between border-white flex">
                <div class="flex">
             <h1 class=" ml-4 text-2xl my-auto  text-white  font-body font-bold">CHOOSE A VEHICLE CLASS</h1>
               <h1 class=" ml-2 text-sm my-auto text-white  font-body font-bold">12 RESULTS</h1>
@@ -316,25 +337,29 @@
               </div>
           </div>
           <div v-if="cars" v-for="(car, index) in cars" :key="car.matricule"   class="ml-8 font-bold mt-8">
-            <div class=" mb-4">
-              <div class="w-[850px] h-44 flex hover:bg-[#2C2E33]   border-b justify-between  transform duration-200">
-                <div><img class="h-44" src="../assets/img/car1.png" alt=""></div>
-                <div class="text-left">
+            <div v-scrollanimation class="translate-y-24 duration-900 mb-4">
+              <div class="w-[90%] lg:w-[850px] h-44 flex hover:bg-[#2C2E33]   border-b justify-between  transform duration-200">
+                <div><img class="w-[280px]" :src="`data:image/png;base64,${car.picture}`" alt=""></div>
+                <div class="w-[280px]  text-left">
                   <h1 class="text-white pb-4 text-2xl font-body"> {{ car.name }} </h1>
                 <p class="text-white text-xl font-body"> {{ car.description }} </p>
                 <div class="flex pb-2">
                   <div class="text-white flex ">
                     <font-awesome-icon class="my-auto p-2 pl-0" icon="gear" />
                     <h1 v-if="car.isAutomatic"  class=" text-xs p1 my-auto ">Automatic</h1>
-                    <h1 v-if="!car.isAutomatic" class=" text-xs p1 my-auto ">Manual </h1>
+                    <h1 v-else class=" text-xs p1 my-auto ">Manual </h1>
                   </div>
                   <div class="text-white flex ">
                     <font-awesome-icon class="my-auto p-2 " icon="user" />
-                    <h1 class=" text-xs p1 my-auto ">{{ car.people }} People</h1>
+                    <h1 class=" text-xs p1 my-auto ">{{ car.placeNumber }} People</h1>
                   </div>
                   <div class="text-white flex ">
                     <font-awesome-icon class="my-auto p-2 " icon="suitcase" />
-                    <h1 class=" text-xs p1 my-auto ">{{ car.bags }} Bags</h1>
+                    <h1 class=" text-xs p1 my-auto ">{{ car.bagsNumber }} Bags</h1>
+                  </div>
+                  <div class="text-white flex ">
+                    <font-awesome-icon class="my-auto p-2 " icon="gas-pump" />
+                    <h1 class=" text-xs p1 my-auto ">Electric</h1>
                   </div>
                 </div>
                 <h2 @click.prevent="isDetailsOpen[index] = !isDetailsOpen[index]" class="text-[#FF385C] cursor-pointer text-sm my-auto font-body font-bold">
@@ -344,33 +369,33 @@
                 </h2>
                 </div>
 
-                <div class=" ml-10 font-body font-bold">
-                    <h1 class="w-80 text-left  text-white text-xl border-b">PRICE</h1>
-                    <div class="w-80 my-2 flex justify-center">
+                <div class=" ml-4 font-body font-bold">
+                    <h1 class="w-64 text-left  text-white text-xl border-b">PRICE</h1>
+                    <div class="w-64 my-2 flex justify-center">
                       <div class=" border-r border-white px-4 ">
-                        <h1 class=" text-white text-xl "> ${{ car.price }} </h1>
+                        <h1 class=" text-white text-xl "> ${{ car.pricePerDay }} </h1>
                     <h1 class=" text-white text-xl "> Par day </h1>
                     </div>
                       <div class="px-4">
-                        <h1 class=" text-white text-xl "> ${{ car.price * 5 + 24.68 }} </h1>
+                        <h1 class=" text-white text-xl "> ${{ car.pricePerDay * 5 + 24.68 }} </h1>
                     <h1 class=" text-white text-xl "> Total </h1></div>
                     </div>
                     <button @click.prevent="totals" class="focus:bg-[#008000] focus:text-white font-body font-bold text-xl  hover:bg-white
-                     hover:text-[#141517] transform duration-200 btn w-80 text-white bg-[#FF385C]">{{ state }}</button>
+                     hover:text-[#141517] transform duration-200 btn w-64 text-white bg-[#FF385C]">Select</button>
                 </div>
               </div>
               <div v-if="isDetailsOpen[index]" class="bg-[#343536]">
                 <div class=" flex justify-between">
                   <div>
                     <h1 class="text-2xl text-left font-body ml-2 font-bold text-white">Vehicle Features</h1>
-                    <ul class=" text-white ml-2  text-sm my-4 font-body list-disc justify-between flex">
-                      <li v-if="0" class="mx-4">Air Bags</li>
-                      <li v-if="1" class="mx-4">AM/FM Stereo Radio</li>
-                      <li v-if="1" class="mx-4">Automatic</li>
-                      <li v-if="0" class="mx-4">Air Conditioning</li>
-                      <li v-if="1" class="mx-4">Cruise Control</li>
-                      <li v-if="0" class="mx-4">Bluetooth</li>
-                      <li v-if="1" class="mx-4">Leather interior</li>
+                    <ul class=" text-white ml-2  text-sm my-4 font-body list-disc justify-between flex flex-wrap">
+                      <li v-if="1" class="mx-4">Air Bags</li>
+                      <li v-show="car.hasAMFMstereoRadio" class="mx-4">AM/FM Stereo Radio</li>
+                      <li v-show="car.isAutomatic" class="mx-4">Automatic</li>
+                      <li v-show="car.hasairconditioning" class="mx-4">Air Conditioning</li>
+                      <li v-show="car.hascruisecontrol" class="mx-4">Cruise Control</li>
+                      <li v-show="car.hasbluetooth" class="mx-4">Bluetooth</li>
+                      <li v-show="car.hasleatherInterior" class="mx-4">Leather interior</li>
                     </ul>
                     <h1 class="text-left mb-2 ml-2 text-white text-sm">
                     * Rates, taxes and fees do not reflect rates, taxes and fees applicable to <br> non-included optional 
@@ -382,8 +407,8 @@
                   <div class=" w-[38%]">
                    <h1 class="text-2xl mb-2 text-left font-body border-b border-white font-bold text-white"> Price Details </h1>
                    <div class="flex w-[95%]  my-2  justify-between text-white">
-                     <h1>2 Day(s)</h1>
-                     <h1> $ {{ car.price * 5 }}* </h1>
+                     <h1>5 Day(s)</h1>
+                     <h1> $ {{ car.pricePerDay * 5 }}* </h1>
                    </div>
                    <div class="flex  w-[95%] py-2 justify-between text-white border-b border-white">
                      <h1>Tax & Fee Details</h1>
@@ -391,7 +416,7 @@
                    </div>
                    <div class="flex justify-between my-2  w-[95%] text-white">
                      <h1>Estimated Total</h1>
-                     <h1>${{ car.price * 5 + 24.68 }}* </h1>
+                     <h1>${{ car.pricePerDay * 5 + 24.68 }}* </h1>
                    </div>
                   </div>
                 </div>
@@ -735,7 +760,9 @@
 <script>
 import { mapMutations } from 'vuex';
 import { onMounted, ref } from 'vue';
-import leaflet from 'leaflet';
+import Datepicker from '@vuepic/vue-datepicker';
+// import '@vuepic/vue-datepicker/dist/main.css';
+import '@vuepic/vue-datepicker/src/VueDatePicker/style/main.scss';
 import GeoErrorModel from './GeoErrorModal.vue';
 import MapFeatures from './MapFeatures.vue';
 
@@ -744,13 +771,18 @@ export default {
   components: {
     GeoErrorModel,
     MapFeatures,
+    Datepicker,
   },
   data() {
     return {
+      // date: '',
+      range: '',
       isDetailsOpen: [],
       step: 1,
       // total: 0,
       cars: [],
+      hour: '',
+      minute: '',
       schema: {
         pickUpLocation: 'required|alphaSpaces',
         returnLocation: 'alphaSpaces',
@@ -769,117 +801,18 @@ export default {
     };
   },
   setup() {
-    let map;
+    const datePickUP = ref();
+    const dateReturn = ref();
     onMounted(() => {
-      // init map
-      map = leaflet.map("map").setView([36.245, 6.570], 15);
-      leaflet.tileLayer(`https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=${process.env.VUE_APP_API_KEY}`, {
-        attribution: 'Map ikar agency in constantine',
-        maxZoom: 18,
-        id: 'mapbox/outdoors-v11',
-        tileSize: 512,
-        zoomOffset: -1,
-        accessToken: process.env.VUE_APP_API_KEY,
-      }).addTo(map);
-      // getGeolocation();
+      const startDate = new Date();
+      const endDate = new Date(new Date().setDate(startDate.getDate() + 7));
+      datePickUP.value = [startDate, endDate];
     });
-    const coords = ref(null);
-    const fetchCoords = ref(null);
-    const geoMarker = ref(null);
-    const geoError = ref(null);
-    const geoErrorMsg = ref("ddddd");
-    const getGeolocation = () => {
-      // if function is called, only run if we dont have coords
-      if (!coords.value) {
-        // check to see if we have coods in session sotrage
-        if (sessionStorage.getItem("coords")) {
-          coords.value = JSON.parse(sessionStorage.getItem("coords"));
-          plotGeoLocation(coords.value);
-          return;
-        }
-        // else get coords from geolocation API
-        fetchCoords.value = true;
-        navigator.geolocation.getCurrentPosition(setCoords, getLocError);
-        return;
-      }
-      // otherwise, remove location
-      coords.value = null;
-      sessionStorage.removeItem("coords");
-      map.removeLayer(geoMarker.value);
-    };
-    const setCoords = (pos) => {
-      // stop fetching
-      fetchCoords.value = null;
-      // set coords in session storage
-      const setSessionCoords = {
-        lat: pos.coords.latitude,
-        lng: pos.coords.longitude,
-      };
-      sessionStorage.setItem("coords", JSON.stringify(setSessionCoords));
-      // set ref coords value
-      coords.value = setSessionCoords;
-      plotGeoLocation(coords.value);
-    };
-    const getLocError = (error) => {
-      // stop fetching coords
-      fetchCoords.value = null;
-      geoError.value = true;
-      geoErrorMsg.value = error.message;
-    };
-    const plotGeoLocation = (coords) => {
-      // create custom marker
-      const customMarker = leaflet.icon({
-        iconUrl: require("../assets/img/map-marker-red.svg"),
-        iconSize: [35, 35],
-      });
-      // create new marker with coords and custom marker
-      geoMarker.value = leaflet
-        .marker([coords.lat, coords.lng], { icon: customMarker })
-        .addTo(map);
-      // set map view to current location
-      map.setView([coords.lat, coords.lng], 15);
-    };
-    const resultMarker = ref(null);
-    const plotResult = (coords) => {
-      // If there is already a marker, remove it. Only allow 1
-      if (resultMarker.value) {
-        map.removeLayer(resultMarker.value);
-      }
-      const customMarker = leaflet.icon({
-        iconUrl: require("../assets/img/map-marker-blue.svg"),
-        iconSize: [35, 35], // size of the icon
-      });
-      resultMarker.value = leaflet
-        .marker([coords.coordinates[1], coords.coordinates[0]], { icon: customMarker })
-        .addTo(map);
-      map.setView([coords.coordinates[1], coords.coordinates[0]], 13);
-    };
-    const removeResult = () => {
-      map.removeLayer(resultMarker.value);
-    };
-    const closeGeoError = () => {
-      geoErrorMsg.value = null;
-      geoError.value = null;
-    };
-    const searchResults = ref(null);
-    const toggleSearchResults = () => {
-      searchResults.value = !searchResults.value;
-    };
-    const closeSearchResults = () => {
-      searchResults.value = null;
-    };
+    const startTime = ref({ hours: 0, minutes: 0 });
     return {
-      geoError,
-      closeGeoError,
-      geoErrorMsg,
-      fetchCoords,
-      coords,
-      getGeolocation,
-      plotResult,
-      searchResults,
-      toggleSearchResults,
-      closeSearchResults,
-      removeResult,
+      datePickUP,
+      dateReturn,
+      startTime,
     };
   },
   mounted() {
@@ -920,20 +853,44 @@ export default {
   methods: {
     ...mapMutations(['totals']),
     ...mapMutations(['toggleReturn']),
+    dddd() {
+      console.log(this.datePickUP);
+      console.log(this.datePickUP[1].getDate() - this.datePickUP[0].getDate());
+    },
     register(values) {
       console.log(values);
       console.log('values');
     },
-
+    getTime() {
+      setInterval(() => {
+        const date = new Date();
+        const [hour, minute] = [date.getHours(), date.getMinutes()];
+        this.hour = hour + 1;
+        this.minute = minute;
+      }, 1000);
+    },
+  },
+  beforeMount() {
+    this.getTime();
   },
 };
 </script>
 
 <style lang="scss" scoped>
+// eslint-disable
 $default    :   #C3C3C3;
 $green-1    :   #00A5CF;
 $blue       :   #00A5CF;
 $transiton  :   all 500ms ease;
+
+.before-enter{
+  opacity: 0;
+  /* transform: translateY(100px); */
+}
+.enter{
+opacity: 1;
+transform: translateY(0px);
+}
 
 body{
     // background-image: linear-gradient(60deg, #abecd6 0%, #fbed96 100%);

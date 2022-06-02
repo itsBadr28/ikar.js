@@ -2,7 +2,7 @@
 <!-- eslint-disable -->
 <div class="bg-[#141517] ">
   <div class=" max-w-7xl lg:flex flex-initial py-4 mx-auto">
-      <div class="lg:w-[400px] w-[95%] lg:mt-20 mt-0 text-left lg:h-[550px] mx-auto rounded-sm font-bold bg-white">
+      <div v-scrollanimation class="-translate-x-24 duration-900 lg:w-[400px] w-[95%] lg:mt-20 mt-0 text-left lg:h-[550px] mx-auto rounded-sm font-bold bg-white">
           <div class="mb-4 py-4 border-b flex font-body  justify-between text-[#141517] border-[#141517]">
             <div class=" flex">
               <h1 class=" ml-4 text-4xl">Filter</h1>
@@ -65,7 +65,7 @@
           </div>
       </div>
        <div class="mb-36 ">
-          <div class=" lg:mt-20 mx-auto py-4  lg:border-t border-b w-[95%]  lg:w-[850px] justify-between border-white flex">
+          <div v-scrollanimation class=" lg:mt-20 mx-auto py-4 -translate-y-24 duration-900  lg:border-t border-b w-[95%]  lg:w-[850px] justify-between border-white flex">
               <h1 class="lg:text-4xl text-xl text-white my-auto  font-body font-bold">Top Vehicle</h1>          
               <div class=" flex">
                 <h1 class="ml-4 lg:text-4xl text-xl my-auto text-white font-body font-bold">State:</h1> 
@@ -81,7 +81,7 @@
           </div>
           <div class="  w-[95%]  lg:w-[840px] mx-auto font-bold mt-8 flex justify-start flex-wrap ">
               <div v-if="cars" v-for="car in cars" :key="car.matricule" >
-                <div v-if="filterType === car.type && filterPassengers <= car.placeNumber" class="lg:w-[265px] mb-4 mr-3 md:w-[265px] lg:h-80  bg-[#2C2E33]  hover:bg-[#2e3139]  transform duration-200" >
+                <div v-scrollanimation v-if="filterType === car.type && filterPassengers <= car.placeNumber" class="translate-y-24 duration-900 lg:w-[265px] mb-4 mr-3 md:w-[265px] lg:h-80  bg-[#2C2E33]  hover:bg-[#2e3139]  transform" >
                  <h1 class="text-white lg:text-2xl md:text-lg m-1 font-body">{{ car.name }}</h1>
                 <p class="text-white lg:text-lg md:text-base text-sm font-body">{{ car.description }}</p>
                 <img :src="`data:image/png;base64,${car.picture}`" alt="">
@@ -153,6 +153,13 @@ export default {
 };
 </script>
 
-<style>
-
+<style scoped>
+.before-enter{
+  opacity: 0;
+  /* transform: translateY(100px); */
+}
+.enter{
+opacity: 1;
+transform: translateY(0px);
+}
 </style>

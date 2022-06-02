@@ -41,10 +41,10 @@
     </div>
     <div  class="flex  flex-wrap justify-center pb-8" >
          <div v-scrollanimation  class=" shadow-[#495C62]
-         shadow-xl lg:-translate-x-24
+         shadow-lg lg:-translate-x-24
         -translate-x-24  bg-no-repeat bg-cover
         bg-center bg1 lg:w-[600px]
-         mx-5 my-4 rounded-xl w-[80%] lg:h-[550px] h-[250px] ">
+         mx-5 my-4 rounded-md w-[70%] lg:h-[550px] h-[250px] ">
          <h1 class="text-white text-left mb-[19rem] mt-16 bg-black bg-opacity-30
           mx-8  font-body font-bold
          lg:text-4xl text-xl">We offer a collection of cars for rent.<br></h1>
@@ -62,10 +62,10 @@
             </div>
         </div>
         <div v-scrollanimation  class=" shadow-[#495C62]
-         shadow-xl lg:translate-x-24
+         shadow-lg lg:translate-x-24
         -translate-x-24  bg-no-repeat bg-cover
         bg-center bg2 lg:w-[600px]
-         mx-5 my-4 rounded-xl w-[80%] lg:h-[550px] h-[250px] ">
+         mx-5 my-4 rounded-md w-[70%] lg:h-[550px] h-[250px] ">
          <h1 class="text-white text-left lg:h-[70%] h-[40%] mt-16 bg-black bg-opacity-10
           mx-8  font-body font-bold
          lg:text-4xl text-xl">We offer our services to companies on long term <br>
