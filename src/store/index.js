@@ -22,6 +22,9 @@ export default createStore({
     isVehicle: false,
     isBsrShow: true,
     total: 0,
+    More: false,
+    reportShow: false,
+    MeetingShow: false,
   },
   getters: {
     menubarShow: (state) => state.menubarShow,
@@ -32,6 +35,9 @@ export default createStore({
     total: (state) => state.total,
     isSignIn: (state) => state.isSignIn,
     dropDownOpen: (state) => state.dropDownOpen,
+    More: (state) => state.More,
+    reportShow: (state) => state.reportShow,
+    MeetingShow: (state) => state.MeetingShow,
   },
   mutations: {
     toggleMenubar: (state) => {
@@ -63,6 +69,15 @@ export default createStore({
     },
     toggledropDownOpen: (state) => {
       state.dropDownOpen = !state.dropDownOpen;
+    },
+    toggleMore: (state) => {
+      state.More = !state.More;
+    },
+    toggleReport: (state) => {
+      state.reportShow = !state.reportShow;
+    },
+    toggleMeeting: (state) => {
+      state.MeetingShow = !state.MeetingShow;
     },
   },
 });

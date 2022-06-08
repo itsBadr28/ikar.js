@@ -78,17 +78,17 @@
     <div class="w-100 flex flex-grow flex-col items-end justify-start">
       <div class="flex flex-row space-x-3">
         <!-- Follow Button -->
-        <button
+        <!-- <button
           class="flex rounded-md bg-blue-500 py-2 px-4 text-white transition-all duration-150 ease-in-out hover:bg-blue-600">
           <svg class="mr-2 fill-current" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
             version="1.1" width="24" height="24" viewBox="0 0 24 24">
             <path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" /></svg>
 
           Follow
-        </button>
+        </button> -->
 
         <!-- More Actions Button -->
-        <button class="flex rounded-md bg-gray-100 py-2 px-1 text-white 
+        <button @click="toggleMore" class="flex rounded-md bg-gray-100 py-2 px-1 text-white 
         transition-all duration-150 ease-in-out hover:bg-gray-200">
           <svg class="fill-gray-500" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
             version="1.1" width="24" height="24" viewBox="0 0 24 24">
@@ -98,19 +98,53 @@
         </button>
       </div>
     </div>
+     <div :class=" More ? '':'hidden'" class="absolute top-full  group-focus:block min-w-full w-max bg-[#f3f4f6] mt-1 rounded">
+              <div class=" origin-top-right absolute right-[5.4rem] -top-[12.3rem] mt-2 w-56 rounded-md shadow-xl bg-gray-200">
+                  <div @click="toggleReport" class="py-1 cursor-pointer">
+                    <a  class="hover:bg-gray-300 text-[#141517] my-auto font-body font-bold block px-4 text-left py-2 text-md">
+                      <font-awesome-icon class="text-red-500 pr-2" icon="triangle-exclamation" />
+                      Report
+                      </a>
+                      </div>
+                      <div @click="toggleMeeting" class="py-1 cursor-pointer">
+                      <a  class="hover:bg-gray-300 text-[#141517] my-auto font-body font-bold block px-4 text-left py-2 text-md">
+                       <font-awesome-icon class="text-green-500 pr-2" icon="handshake" />
+                       Meeting
+                      </a>
+                      </div>
+                  
+                </div> 
+            </div>
   </div>
 </div>
   </div>
   <ReservationList />
+  <Report />
+  <Meeting />
 </template>
 
 <script>
+import { mapMutations } from "vuex";
 import ReservationList from './ReservationList.vue';
+import Report from './Report.vue';
+import Meeting from './Meeting.vue';
 
 export default {
   name: 'userInfo',
   components: {
     ReservationList,
+    Report,
+    Meeting,
+  },
+  computed: {
+    More() {
+      return this.$store.getters.More;
+    },
+  },
+  methods: {
+    ...mapMutations(["toggleMore"]),
+    ...mapMutations(["toggleReport"]),
+    ...mapMutations(["toggleMeeting"]),
   },
 };
 </script>
