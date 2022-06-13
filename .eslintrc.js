@@ -25,6 +25,7 @@ module.exports = {
     'no-use-before-define': 'off',
     'global-require': 'off',
     'linebreak-style': 'off',
+    'dot-notation': 'off',
   },
   overrides: [
     {

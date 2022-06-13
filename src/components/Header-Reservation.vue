@@ -66,7 +66,7 @@
 import { mapMutations } from 'vuex';
 
 export default {
-  name: 'Header-vehcle',
+  name: 'HeaderReservation',
   data() {
     return {
       hoverHome: 'false',
@@ -74,17 +74,16 @@ export default {
       hoverLaws: 'false',
     };
   },
+  props: {
+    total: Number,
+  },
   computed: {
     menubarShow() {
       return this.$store.getters.menubarShow;
     },
-    total() {
-      return this.$store.getters.total;
-    },
   },
   methods: {
     ...mapMutations(['toggleMenubar']),
-    ...mapMutations(['totals']),
     ...mapMutations(['toggleAuthModal']),
 
   },

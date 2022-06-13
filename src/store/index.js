@@ -21,7 +21,6 @@ export default createStore({
     authModalShow: false,
     isVehicle: false,
     isBsrShow: true,
-    total: 0,
     More: false,
     reportShow: false,
     MeetingShow: false,
@@ -32,7 +31,6 @@ export default createStore({
     isVehicle: (state) => state.isVehicle,
     authModalShow: (state) => state.authModalShow,
     isBsrShow: (state) => state.isBsrShow,
-    total: (state) => state.total,
     isSignIn: (state) => state.isSignIn,
     dropDownOpen: (state) => state.dropDownOpen,
     More: (state) => state.More,
@@ -47,10 +45,6 @@ export default createStore({
     toggleReturn: (state) => {
       state.returnShow = !state.returnShow;
       console.log(state.returnShow);
-    },
-    totals: (state) => {
-      state.total = 124.18;
-      console.log('here');
     },
     toggleAuthModal: (state) => {
       state.authModalShow = !state.authModalShow;

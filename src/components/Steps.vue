@@ -3,14 +3,6 @@
  <div  class="bg-[#141517]">
    <div>
      <form  action="">
-     <!-- <Datepicker name="date" :minDate="new Date()" noToday v-model="datePickUP" :enableTimePicker="false" range multiCalendars  placeholder="Select Date"  dark required  :yearRange="[2022, 2023]" :disabledWeekDays="[6, 5]"  >
-       <template #calendar-header="{ index, day }">
-        <div :class="index === 4 || index === 5 ? 'text-red-500' : ''">
-          {{ day }}
-        </div>
-      </template>
-    </Datepicker>  -->
-<!-- <button @click="dddd"  type="button">click</button> -->
      </form>
      <!-- <Datepicker  v-model="dateReturn" noToday :enableTimePicker="false"  placeholder="Select Date"  required  :yearRange="[2022, 2023]" :disabledWeekDays="[6, 5]" minutesIncrement="30"   dark >
       <template #calendar-header="{ index, day }">
@@ -67,7 +59,7 @@
         <div class="stepper-content" v-for="item in 5" :key="item">
             <div class="stepper-pane" v-if="step == item">
              <div v-show="item == 1" >
-              <vee-form @submit="register" :validation-schema="schema">
+              <vee-form @submit="stepOne" :validation-schema="schema">
                <div class=" flex-initial justify-center pb-8 mx-auto max-w-7xl">
                 <div class=" lg:w-full w-[95%] flex-initial text-left  mx-auto ">
                 <label for="website-admin" class="block mb-2 text-2xl text-gray-900 font-body font-bold dark:text-gray-300">PICK-UP LOCATION <span class="font-body font-bold text-red-500 text-xl">*</span></label>
@@ -75,7 +67,7 @@
                  <span class="inline-flex items-center px-3.5 text-2xl text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
                   <font-awesome-icon icon="location-dot" />
                  </span>
-                 <veeField name="pickUpLocation" type="text" class="rounded-none rounded-r bg-gray-50 border outline-none text-gray-900
+                 <veeField v-model="posts.pickUpLocation" name="pickUpLocation" type="text" class="reserv rounded-none rounded-r bg-gray-50 border outline-none text-gray-900
                  focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-xl font-body
                  border-gray-300 p-4  dark:bg-[#222327] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
                  dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="ZIP , CITY OR AIRPORT"  />
@@ -98,7 +90,7 @@
                   <span class="inline-flex items-center px-3.5 text-2xl text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
                     <font-awesome-icon icon="location-dot" />
                   </span>
-                  <vee-field name="returnLocation" type="text"  class="rounded-none rounded-r bg-gray-50 border outline-none text-gray-900
+                  <veeField v-model="posts.returnLocation" name="returnLocation" type="text"  class=" rounded-none rounded-r bg-gray-50 border outline-none text-gray-900
                   focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-xl font-body
                  border-gray-300 p-4  dark:bg-[#222327] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
                   dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="ZIP , CITY OR AIRPORT" />
@@ -114,7 +106,7 @@
                        <font-awesome-icon icon="calendar-days" />
                      </span>
                     <!-- <Datepicker hideInputIcon closeOnScroll class="" v-model="dateReturn"  :minDate="new Date()" :enableTimePicker="false" placeholder="SELECT DATE"  required  :yearRange="[2022, 2023]" :disabledWeekDays="[6, 5]"  dark /> -->
-                    <Datepicker name="date" noToday :minDate="new Date()" v-model="datePickUP" :enableTimePicker="false" range multiCalendars  placeholder="Select Date"  dark required  :yearRange="[2022, 2023]" :disabledWeekDays="[6, 5]"  >
+                    <Datepicker name="date"  noToday :minDate="new Date()" v-model="datePickUP" :enableTimePicker="false" range multiCalendars  placeholder="Select Date"  dark required  :yearRange="[2022, 2023]" :disabledWeekDays="[6, 5]"  >
                        <template #calendar-header="{ index, day }">
                         <div :class="index === 4 || index === 5 ? 'text-red-500' : ''">
                           {{ day }}
@@ -129,7 +121,7 @@
                      <span class="inline-flex items-center px-3.5 text-2xl text-gray-900 bg-gray-200 border rounded-l-md border-r-0 border-gray-300 lg:rounded-l-sm dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
                         <font-awesome-icon icon="clock" />
                     </span>
-                    <Datepicker name="date"  v-model="timePickUP" minutesIncrement="30"  placeholder="Select Time Pick-Up"  disableTimeRangeValidation :startTime="startTime" :minTime="{ hours: 8, minutes: 30 }" :maxTime="{ hours: 19, minutes: 30 }"  dark required timePicker />
+                    <Datepicker name="date"   v-model="timePickUP" minutesIncrement="30"  placeholder="Select Time Pick-Up"  disableTimeRangeValidation :startTime="startTime" :minTime="{ hours: 8, minutes: 30 }" :maxTime="{ hours: 19, minutes: 30 }"  dark required timePicker />
                     </div>
                  </div>
                   <div class="">
@@ -138,7 +130,7 @@
                      <span class="inline-flex items-center px-3.5 text-2xl text-gray-900 bg-gray-200 border rounded-l-md border-r-0 border-gray-300 lg:rounded-l-sm dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
                         <font-awesome-icon icon="clock" />
                     </span>
-                    <Datepicker name="date"  v-model="timeReturn"  minutesIncrement="30" placeholder="Select Time Return" disableTimeRangeValidation :startTime="startTime" :minTime="{ hours: 8, minutes: 30 }" :maxTime="{ hours: 19, minutes: 30 }"  dark required timePicker />
+                    <Datepicker name="date"   v-model="timeReturn"  minutesIncrement="30" placeholder="Select Time Return" disableTimeRangeValidation :startTime="startTime" :minTime="{ hours: 8, minutes: 30 }" :maxTime="{ hours: 19, minutes: 30 }"  dark required timePicker />
                     </div>
                  </div>
                  <div class=" ">
@@ -149,7 +141,7 @@
                         <span class="inline-flex items-center px-3.5 text-2xl text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md lg:rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
                            <font-awesome-icon  icon="person" />
                         </span>
-                        <vee-field type="number" min="18" max="90"  name="renterAge" class=" h-16 w-[150px] rounded-r-sm bg-gray-50 border outline-none text-gray-900
+                        <veeField type="number" v-model="posts.renterAge" min="18" max="90"  name="renterAge" class="reserv h-16 w-[150px] rounded-r-sm bg-gray-50 border outline-none text-gray-900
                          focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0  text-xl font-body
                          border-gray-300 p-4  dark:bg-[#222327] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
                          dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="AGE" />
@@ -158,7 +150,7 @@
                    </div>
            
                    <div class="flex lg:justify-end items-end my-4 lg:my-0 " >
-                       <button  type="submit" class="btn h-16 flex  bg-[#FF385C]  justify-center w-full lg:w-[153px] items-center lg:rounded-l-sm rounded-sm lg:rounded-r-md ">
+                       <button  type="submit" @click="stepOne"  class="btn h-16 flex  bg-[#FF385C]  justify-center w-full lg:w-[153px] items-center lg:rounded-l-sm rounded-sm lg:rounded-r-md ">
                             <span class="text-white my-auto  font-body font-bold text-4xl uppercase">
                              GO 
                             </span>
@@ -323,26 +315,26 @@
                 </select>
               </div>
           </div>
-          <div v-if="cars" v-for="(car, index) in cars" :key="car.matricule"   class="ml-8 font-bold mt-8">
+          <div v-if="vehicles" v-for="(vehicle, index) in vehicles" :key="vehicle.matricule"   class="ml-8 font-bold mt-8">
             <div v-scrollanimation class="translate-y-24 duration-900 mb-4">
               <div class="w-[90%] lg:w-[850px] h-44 flex hover:bg-[#2C2E33]   border-b justify-between  transform duration-200">
-                <div><img class="w-[280px]" :src="`data:image/png;base64,${car.picture}`" alt=""></div>
+                <div><img class="w-[280px]" :src="`data:image/png;base64,${vehicle.picture}`" alt=""></div>
                 <div class="w-[280px]  text-left">
-                  <h1 class="text-white pb-4 text-2xl font-body"> {{ car.name }} </h1>
-                <p class="text-white text-xl font-body"> {{ car.description }} </p>
+                  <h1 class="text-white pb-4 text-2xl font-body"> {{ vehicle.name }} </h1>
+                <p class="text-white text-xl font-body"> {{ vehicle.description }} </p>
                 <div class="flex pb-2">
                   <div class="text-white flex ">
                     <font-awesome-icon class="my-auto p-2 pl-0" icon="gear" />
-                    <h1 v-if="car.isAutomatic"  class=" text-xs p1 my-auto ">Automatic</h1>
+                    <h1 v-if="vehicle.isAutomatic"  class=" text-xs p1 my-auto ">Automatic</h1>
                     <h1 v-else class=" text-xs p1 my-auto ">Manual </h1>
                   </div>
                   <div class="text-white flex ">
                     <font-awesome-icon class="my-auto p-2 " icon="user" />
-                    <h1 class=" text-xs p1 my-auto ">{{ car.placeNumber }} People</h1>
+                    <h1 class=" text-xs p1 my-auto ">{{ vehicle.placeNumber }} People</h1>
                   </div>
                   <div class="text-white flex ">
                     <font-awesome-icon class="my-auto p-2 " icon="suitcase" />
-                    <h1 class=" text-xs p1 my-auto ">{{ car.bagsNumber }} Bags</h1>
+                    <h1 class=" text-xs p1 my-auto ">{{ vehicle.bagsNumber }} Bags</h1>
                   </div>
                   <div class="text-white flex ">
                     <font-awesome-icon class="my-auto p-2 " icon="gas-pump" />
@@ -360,14 +352,14 @@
                     <h1 class="w-64 text-left  text-white text-xl border-b">PRICE</h1>
                     <div class="w-64 my-2 flex justify-center">
                       <div class=" border-r border-white px-4 ">
-                        <h1 class=" text-white text-xl "> ${{ car.pricePerDay }} </h1>
+                        <h1 class=" text-white text-xl "> ${{ vehicle.pricePerDay }} </h1>
                     <h1 class=" text-white text-xl "> Par day </h1>
                     </div>
                       <div class="px-4">
-                        <h1 class=" text-white text-xl "> ${{ car.pricePerDay * 5 + 24.68 }} </h1>
+                        <h1 class=" text-white text-xl "> ${{ vehicle.pricePerDay * 5 + 24.68 }} </h1>
                     <h1 class=" text-white text-xl "> Total </h1></div>
                     </div>
-                    <button @click.prevent="totals" class="focus:bg-[#008000] focus:text-white font-body font-bold text-xl  hover:bg-white
+                    <button @click.prevent="totals(vehicle.pricePerDay, vehicle.matricule)" class="focus:bg-[#008000] focus:text-white font-body font-bold text-xl  hover:bg-white
                      hover:text-[#141517] transform duration-200 btn w-64 text-white bg-[#FF385C]">Select</button>
                 </div>
               </div>
@@ -377,12 +369,12 @@
                     <h1 class="text-2xl text-left font-body ml-2 font-bold text-white">Vehicle Features</h1>
                     <ul class=" text-white ml-2  text-sm my-4 font-body list-disc justify-between flex flex-wrap">
                       <li v-if="1" class="mx-4">Air Bags</li>
-                      <li v-show="car.hasAMFMstereoRadio" class="mx-4">AM/FM Stereo Radio</li>
-                      <li v-show="car.isAutomatic" class="mx-4">Automatic</li>
-                      <li v-show="car.hasairconditioning" class="mx-4">Air Conditioning</li>
-                      <li v-show="car.hascruisecontrol" class="mx-4">Cruise Control</li>
-                      <li v-show="car.hasbluetooth" class="mx-4">Bluetooth</li>
-                      <li v-show="car.hasleatherInterior" class="mx-4">Leather interior</li>
+                      <li v-show="vehicle.hasAMFMstereoRadio" class="mx-4">AM/FM Stereo Radio</li>
+                      <li v-show="vehicle.isAutomatic" class="mx-4">Automatic</li>
+                      <li v-show="vehicle.hasairconditioning" class="mx-4">Air Conditioning</li>
+                      <li v-show="vehicle.hascruisecontrol" class="mx-4">Cruise Control</li>
+                      <li v-show="vehicle.hasbluetooth" class="mx-4">Bluetooth</li>
+                      <li v-show="vehicle.hasleatherInterior" class="mx-4">Leather interior</li>
                     </ul>
                     <h1 class="text-left mb-2 ml-2 text-white text-sm">
                     * Rates, taxes and fees do not reflect rates, taxes and fees applicable to <br> non-included optional 
@@ -395,7 +387,7 @@
                    <h1 class="text-2xl mb-2 text-left font-body border-b border-white font-bold text-white"> Price Details </h1>
                    <div class="flex w-[95%]  my-2  justify-between text-white">
                      <h1>5 Day(s)</h1>
-                     <h1> $ {{ car.pricePerDay * 5 }}* </h1>
+                     <h1> $ {{ vehicle.pricePerDay * 5 }}* </h1>
                    </div>
                    <div class="flex  w-[95%] py-2 justify-between text-white border-b border-white">
                      <h1>Tax & Fee Details</h1>
@@ -403,7 +395,7 @@
                    </div>
                    <div class="flex justify-between my-2  w-[95%] text-white">
                      <h1>Estimated Total</h1>
-                     <h1>${{ car.pricePerDay * 5 + 24.68 }}* </h1>
+                     <h1>${{ vehicle.pricePerDay * 5 + 24.68 }}* </h1>
                    </div>
                   </div>
                 </div>
@@ -431,16 +423,19 @@
         </div>
         <div class="flex w-[550px]">
           <div>
-          <h1 class=" text-left font-body font-bold text-[#141517] text-lg">$ 10.48 / day ($ 73.38 max)</h1>
+          <h1 class=" text-left font-body font-bold text-[#141517] text-lg">$ 10 ( For All Your Travel)</h1>
         </div>
-        <div class="flex my-auto mx-4">
+        <!-- <div class="flex my-auto mx-4">
           <font-awesome-icon class="text-sm px-2 rotate-90 my-auto text-[#FF385C] " icon="play"/>
           <h1 class=" text-left font-body font-bold text-[#141517]">DETAILS</h1>
-        </div>
+        </div> -->
         </div>
           <div class="flex my-auto">
-            <font-awesome-icon class="bg-[#FF385C] text-2xl text-white rounded-full mx-1 m-2 p-1" icon="plus" />
+           <div @click="check('Booster Seat')" class="flex my-auto">
+            <font-awesome-icon v-if="!checkedBoosterSeat" class="bg-[#FF385C] text-2xl text-white rounded-full mx-1 m-2 p-1" icon="plus" />
+            <font-awesome-icon v-if="checkedBoosterSeat" class="bg-[#FF385C] text-2xl text-white rounded-full mx-1 m-2 p-1" icon="check" />
             <h1 class="text-xl font-body text-[#141517] font-bold m-2 mx-0">ADD</h1>
+          </div>
           </div>
       </div>
       <div class="flex justify-between max-w-7xl bg-white border-b-[0.5px] border-opacity-50 border-[#141517] p-4">
@@ -450,15 +445,16 @@
         </div>
         <div class="flex w-[550px]">
           <div>
-          <h1 class=" text-left font-body font-bold text-[#141517] text-lg">$ 10.48 / day ($ 73.38 max)</h1>
+          <h1 class=" text-left font-body font-bold text-[#141517] text-lg">$ 10 ( For All Your Travel)</h1>
         </div>
-        <div class="flex my-auto mx-4">
+        <!-- <div class="flex my-auto mx-4">
           <font-awesome-icon class="text-sm px-2 rotate-90 my-auto text-[#FF385C] " icon="play"/>
           <h1 class=" text-left font-body font-bold text-[#141517]">DETAILS</h1>
+        </div> -->
         </div>
-        </div>
-          <div class="flex my-auto">
-            <font-awesome-icon class="bg-[#FF385C] text-2xl text-white rounded-full mx-1 m-2 p-1" icon="plus" />
+          <div @click="check('Baby Seat')" class="flex my-auto">
+            <font-awesome-icon v-if="!checkedBabySeat" class="bg-[#FF385C] text-2xl text-white rounded-full mx-1 m-2 p-1" icon="plus" />
+            <font-awesome-icon v-if="checkedBabySeat" class="bg-[#FF385C] text-2xl text-white rounded-full mx-1 m-2 p-1" icon="check" />
             <h1 class="text-xl font-body text-[#141517] font-bold m-2 mx-0">ADD</h1>
           </div>
       </div>
@@ -469,21 +465,22 @@
         </div>
         <div class="flex w-[550px]">
           <div>
-          <h1 class=" text-left font-body font-bold text-[#141517] text-lg">$ 10.48 / day ($ 73.38 max)</h1>
+          <h1 class=" text-left font-body font-bold text-[#141517] text-lg">$ 10 ( For All Your Travel)</h1>
         </div>
-        <div class="flex my-auto mx-4">
+        <!-- <div class="flex my-auto mx-4">
           <font-awesome-icon class="text-sm px-2 rotate-90 my-auto text-[#FF385C] " icon="play"/>
           <h1 class=" text-left font-body font-bold text-[#141517]">DETAILS</h1>
+        </div> -->
         </div>
-        </div>
-          <div class="flex my-auto">
-            <font-awesome-icon class="bg-[#FF385C] text-2xl text-white rounded-full mx-1 m-2 p-1" icon="plus" />
+          <div @click="check('GPS')" class="flex my-auto">
+            <font-awesome-icon v-if="!checkedGBS" class="bg-[#FF385C] text-2xl text-white rounded-full mx-1 m-2 p-1" icon="plus" />
+            <font-awesome-icon v-if="checkedGBS" class="bg-[#FF385C] text-2xl text-white rounded-full mx-1 m-2 p-1" icon="check" />
             <h1 class="text-xl font-body text-[#141517] font-bold m-2 mx-0">ADD</h1>
           </div>
       </div>
               </div>
-             <div>
-               <h1 class="flex justify-end text-white font-body my-2 text-3xl">Clear</h1>
+             <div @click="clear">
+               <h1  class="flex justify-end text-white font-body my-2 text-3xl">Clear</h1>
              </div>
              </div>
              <div class="flex justify-between" v-show="item == 4">
@@ -717,7 +714,6 @@
                         <a href="" class="text-left text-sm mt-2 text-white hover:text-[#FF385C]">forgot password?</a>
                         </div>
                        </div>
-        
                        <div class=" lg:w-full w-[95%] flex-initial text-left my-4  mx-auto">
                            <button class="btn h-16 flex  bg-[#FF385C]  justify-center lg:mx-auto w-full lg:w-[250px] items-center rounded-sm ">
                              <span class="text-white my-auto  font-body font-bold text-4xl uppercase">
@@ -739,7 +735,7 @@
             </div>
         </div>
 
-     
+     <Header class="hidden" :total="posts.total" />
     </div>
     </div> 
 </template>
@@ -750,20 +746,33 @@ import { onMounted, ref } from 'vue';
 import Datepicker from '@vuepic/vue-datepicker';
 // import '@vuepic/vue-datepicker/dist/main.css';
 import '@vuepic/vue-datepicker/src/VueDatePicker/style/main.scss';
+import Header from './Header-Reservation.vue';
 
 export default {
   name: 'Steps-',
   components: {
     Datepicker,
+    Header,
   },
   data() {
     return {
-      // date: '',
       range: '',
+      checkedGBS: false,
+      checkedBabySeat: false,
+      checkedBoosterSeat: false,
       isDetailsOpen: [],
-      step: 1,
-      // total: 0,
-      cars: [],
+      posts: {
+        pickUpLocation: '',
+        returnLocation: '',
+        renterAge: '',
+        vehicleId: '',
+        total: 0,
+        hasBabySeat: false,
+        hasGPS: false,
+        hasBoosterSeat: false,
+      },
+      step: 3,
+      vehicles: [],
       hour: '',
       minute: '',
       schema: {
@@ -803,22 +812,12 @@ export default {
     };
   },
   mounted() {
-    fetch('http://localhost:3000/api/admin/vehicles')
+    fetch('http://localhost:3000/api/vehicles')
       .then(res => res.json())
       .then(data => {
         // const vehicles = data.filter(vehicle => vehicle.placeNumber >= this.filterPassengers);
-        const set = new Set();
-        const Output = [];
-        data.forEach(car => {
-          if (!set.has(car.description)) {
-            set.add(car.description);
-            Output.push(car);
-            console.log(data);
-          }
-        });
-
-        this.cars = Output;
-        console.log(this.cars);
+        this.vehicles = data;
+        console.log(this.vehicles);
       })
       .catch(err => console.log(err.message));
   },
@@ -838,15 +837,59 @@ export default {
     },
   },
   methods: {
-    ...mapMutations(['totals']),
+    // ...mapMutations(['totals']),
+    clear() {
+      this.checkedGBS = false;
+      this.posts.hasGPS = false;
+      this.checkedBabySeat = false;
+      this.posts.hasBabySeat = false;
+      this.checkedBoosterSeat = false;
+      this.posts.hasBoosterSeat = false;
+    },
+    check(value) {
+      if (value === 'GPS') {
+        this.checkedGBS = !this.checkedGBS;
+        this.posts.hasGPS = !this.posts.hasGPS;
+        console.log(value);
+      }
+      if (value === 'Baby Seat') {
+        this.checkedBabySeat = !this.checkedBabySeat;
+        this.posts.hasBabySeat = !this.posts.hasBabySeat;
+        console.log(value);
+      }
+      if (value === 'Booster Seat') {
+        this.checkedBoosterSeat = !this.checkedBoosterSeat;
+        this.posts.hasBoosterSeat = !this.posts.hasBoosterSeat;
+        console.log(value);
+      }
+    },
+    totals(totale, matricule) {
+      this.posts.total = totale * 5 + 24.68;
+      this.posts.vehicleId = matricule;
+      console.log(totale, matricule);
+    },
     ...mapMutations(['toggleReturn']),
     dddd() {
       console.log(this.datePickUP);
       console.log(this.datePickUP[1].getDate() - this.datePickUP[0].getDate());
     },
-    register(values) {
-      console.log(values);
-      console.log('values');
+    stepOne() {
+      let everythingFilled = true;
+      const inputs = document.querySelectorAll(".reserv");
+      inputs.forEach(input => {
+        console.log(input);
+        if (!input.value) {
+          everythingFilled = false;
+        }
+        console.log(input.hasAttribute["min"]);
+        if (input.hasAttribute["min"]) {
+          if (input.value < 18 || input.value > 70) {
+            console.log(input.value);
+            everythingFilled = false;
+          }
+        }
+      });
+      if (everythingFilled) this.step += 1;
     },
     getTime() {
       setInterval(() => {
