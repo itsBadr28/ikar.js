@@ -3,14 +3,14 @@
  <div  class="bg-[#141517]">
    <div>
      <form  action="">
-     <Datepicker name="date" noToday v-model="datePickUP" :enableTimePicker="false" range multiCalendars  placeholder="Select Date"  dark required  :yearRange="[2022, 2023]" :disabledWeekDays="[6, 5]"  >
+     <!-- <Datepicker name="date" :minDate="new Date()" noToday v-model="datePickUP" :enableTimePicker="false" range multiCalendars  placeholder="Select Date"  dark required  :yearRange="[2022, 2023]" :disabledWeekDays="[6, 5]"  >
        <template #calendar-header="{ index, day }">
         <div :class="index === 4 || index === 5 ? 'text-red-500' : ''">
           {{ day }}
         </div>
       </template>
-    </Datepicker> 
-<button @click="dddd"  type="button">click</button>
+    </Datepicker>  -->
+<!-- <button @click="dddd"  type="button">click</button> -->
      </form>
      <!-- <Datepicker  v-model="dateReturn" noToday :enableTimePicker="false"  placeholder="Select Date"  required  :yearRange="[2022, 2023]" :disabledWeekDays="[6, 5]" minutesIncrement="30"   dark >
       <template #calendar-header="{ index, day }">
@@ -109,53 +109,39 @@
                <div class="lg:flex flex-wrap   ">
                 <div class=" lg:mr-0.5">
                    <label for="website-admin" class="block mb-2 text-2xl text-gray-900 font-body font-bold dark:text-gray-300">PICK-UP DATE <span class="font-body font-bold text-red-500 text-xl">*</span></label>
-                   <div class="flex">
+                   <div class="flex w-[300px  ]">
                      <span class="inline-flex items-center px-3.5 text-2xl text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
                        <font-awesome-icon icon="calendar-days" />
                      </span>
-                    <Datepicker hideInputIcon closeOnScroll class="" v-model="dateReturn"  :minDate="new Date()" :enableTimePicker="false" placeholder="SELECT DATE"  required  :yearRange="[2022, 2023]" :disabledWeekDays="[6, 5]"  dark />
-
+                    <!-- <Datepicker hideInputIcon closeOnScroll class="" v-model="dateReturn"  :minDate="new Date()" :enableTimePicker="false" placeholder="SELECT DATE"  required  :yearRange="[2022, 2023]" :disabledWeekDays="[6, 5]"  dark /> -->
+                    <Datepicker name="date" noToday :minDate="new Date()" v-model="datePickUP" :enableTimePicker="false" range multiCalendars  placeholder="Select Date"  dark required  :yearRange="[2022, 2023]" :disabledWeekDays="[6, 5]"  >
+                       <template #calendar-header="{ index, day }">
+                        <div :class="index === 4 || index === 5 ? 'text-red-500' : ''">
+                          {{ day }}
+                        </div>
+                      </template>
+                    </Datepicker>
                   </div>
-                </div>
-                <!-- <div class="">
-                   <label for="website-admin" class="block mb-2 text-2xl text-gray-900 font-body font-bold dark:text-gray-300">TIME <span class="font-body font-bold text-red-500 text-xl">*</span></label>
-                   <div class="flex">
-                    <span class="inline-flex items-center px-3.5 text-2xl text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md lg:rounded-l-sm dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
-                      <font-awesome-icon icon="clock" />
-                    </span>
-                    <vee-field name="pickUpTime" type="time"  class="rounded-r-sm lg:rounded-r-md w-[150px] bg-gray-50 border  outline-none text-gray-900
-                    focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 text-xl font-body
-                    border-gray-300 p-4  dark:bg-[#222327] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
-                    dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="12-12-22" />
                   </div>
-                  <ErrorMessage class="text-red-600" name="pickUpTime" />
-                </div> -->
-               </div>
-               <div class="lg:flex ">
-                  <div class=" mr-0.5">
-                   <label for="website-admin" class="block mb-2 text-2xl text-gray-900 font-body font-bold dark:text-gray-300">RETURN DATE <span class="font-body font-bold text-red-500 text-xl">*</span></label>
-                   <div class="flex">
-                    <span class="inline-flex items-center px-3.5 text-2xl text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
-                      <font-awesome-icon icon="calendar-days" />
-                    </span>
-                    <Datepicker hideInputIcon closeOnScroll class="" v-model="dateReturn"  :minDate="new Date()" :enableTimePicker="false" placeholder="SELECT DATE"  required  :yearRange="[2022, 2023]" :disabledWeekDays="[6, 5]"  dark />
-                  </div>
-                </div>
-                <!-- <div class=" ">
-                     <label for="website-admin" class="block mb-2 text-2xl text-gray-900 font-body font-bold dark:text-gray-300">TIME <span class="font-body font-bold text-red-500 text-xl">*</span></label>
+                  <div class=" ">
+                     <label for="website-admin" class="block mb-2 text-2xl text-gray-900 font-body font-bold dark:text-gray-300"> PICK-UP TIME <span class="font-body font-bold text-red-500 text-xl">*</span></label>
                     <div class="flex">
                      <span class="inline-flex items-center px-3.5 text-2xl text-gray-900 bg-gray-200 border rounded-l-md border-r-0 border-gray-300 lg:rounded-l-sm dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
                         <font-awesome-icon icon="clock" />
                     </span>
-                    <vee-field name="returnTime" type="time"  class=" lg:rounded-r-md w-[150px] bg-gray-50 border outline-none text-gray-900
-                     focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 text-xl font-body rounded-r-sm
-                       border-gray-300 p-4  dark:bg-[#222327] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
-                     dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="12-12-22" />
+                    <Datepicker name="date"  v-model="timePickUP" minutesIncrement="30"  placeholder="Select Time Pick-Up"  disableTimeRangeValidation :startTime="startTime" :minTime="{ hours: 8, minutes: 30 }" :maxTime="{ hours: 19, minutes: 30 }"  dark required timePicker />
                     </div>
-                    <ErrorMessage class="text-red-600" name="returnTime" />
-                 </div> -->
-               </div>
-               <div class=" ">
+                 </div>
+                  <div class="">
+                     <label for="website-admin" class="block mb-2 text-2xl text-gray-900 font-body font-bold uppercase dark:text-gray-300"> Return TIME <span class="font-body font-bold text-red-500 text-xl">*</span></label>
+                    <div class="flex">
+                     <span class="inline-flex items-center px-3.5 text-2xl text-gray-900 bg-gray-200 border rounded-l-md border-r-0 border-gray-300 lg:rounded-l-sm dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
+                        <font-awesome-icon icon="clock" />
+                    </span>
+                    <Datepicker name="date"  v-model="timeReturn"  minutesIncrement="30" placeholder="Select Time Return" disableTimeRangeValidation :startTime="startTime" :minTime="{ hours: 8, minutes: 30 }" :maxTime="{ hours: 19, minutes: 30 }"  dark required timePicker />
+                    </div>
+                 </div>
+                 <div class=" ">
                  <div class="lg:flex">
                    <div  class=" lg:mr-0.5">
                      <label for="website-admin" class="block mb-2  text-2xl text-gray-900 font-body font-bold dark:text-gray-300">RENTER AGE <span class="font-body font-bold text-red-500 text-xl">*</span></label>
@@ -181,17 +167,18 @@
                    </div>
                  </div>
                   <ErrorMessage class="text-red-600" name="renterAge" />
+                 </div>
                </div>
                </div>
         
                </div>
               </vee-form>    
-              <div class="relative h-[500px] w-full ">
+              <!-- <div class="relative h-[500px] w-full ">
                  <GeoErrorModel @closeGeoError="closeGeoError" v-if="geoError" :geoErrorMsg="geoErrorMsg" />
                  <MapFeatures  :fetchCoords="fetchCoords" :coords="coords" @toggleSearchResults="toggleSearchResults" @getGeolocation="getGeolocation" @plotResult="plotResult"
                  @removeResult="removeResult" :searchResults="searchResults" class="w-full md:w-auto absolute md:top-[40px] md:left-[60px] z-[2]" /> 
                 <div v-if="item === 1" id="map" class="h-full z-[1]"></div> 
-             </div> 
+             </div>  -->
              </div> 
               <div v-show="item == 2 " class="mt-4 flex">
               <div>
@@ -763,14 +750,10 @@ import { onMounted, ref } from 'vue';
 import Datepicker from '@vuepic/vue-datepicker';
 // import '@vuepic/vue-datepicker/dist/main.css';
 import '@vuepic/vue-datepicker/src/VueDatePicker/style/main.scss';
-import GeoErrorModel from './GeoErrorModal.vue';
-import MapFeatures from './MapFeatures.vue';
 
 export default {
   name: 'Steps-',
   components: {
-    GeoErrorModel,
-    MapFeatures,
     Datepicker,
   },
   data() {
@@ -801,15 +784,19 @@ export default {
     };
   },
   setup() {
-    const datePickUP = ref();
+    const timePickUP = ref();
+    const timeReturn = ref();
+    const datePickUP = ref(new Date());
     const dateReturn = ref();
     onMounted(() => {
       const startDate = new Date();
       const endDate = new Date(new Date().setDate(startDate.getDate() + 7));
       datePickUP.value = [startDate, endDate];
     });
-    const startTime = ref({ hours: 0, minutes: 0 });
+    const startTime = ref({ hours: 8, minutes: 30 });
     return {
+      timePickUP,
+      timeReturn,
       datePickUP,
       dateReturn,
       startTime,
